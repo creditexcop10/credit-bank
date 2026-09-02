@@ -107,9 +107,9 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">Ready to Join Our Family?</h2>
           <p className="text-xl text-muted-foreground mb-8">Experience the difference of banking with a trusted partner who puts your financial success first.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/register"><Button size="lg" className="bg-primary hover:bg-primary/90">Open an Account</Button></Link>
-            <Link href="/contact"><Button size="lg" variant="outline">Contact Us</Button></Link>
+          <div className="flex flex-row gap-4 justify-center">
+            <Link href="/register"><Button size="lg" className="bg-primary hover:bg-primary/90 px-4 lg:px-8 py-2">Open an Account</Button></Link>
+            <Link href="/contact"><Button size="lg" variant="outline" className="px-4 lg:px-8 py-2">Contact Us</Button></Link>
           </div>
         </div>
       </section>

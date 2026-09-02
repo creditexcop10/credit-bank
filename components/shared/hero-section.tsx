@@ -66,16 +66,16 @@ export function HeroSection() {
           
           <motion.div 
             variants={blurInVariants}
-            className="flex gap-4 flex-row"
+            className="flex gap-2 lg:gap-4 flex-row"
           >
             <Link href="/register">
               {/* Made buttons bigger with custom classes */}
-              <Button size="lg" className="h-12 px-8 text-base bg-primary hover:bg-primary/90">
+              <Button className="h-12 px-2 lg:px-8 text-base bg-primary hover:bg-primary/90">
                 Open an Account <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
             <Link href="/login">
-              <Button size="lg" variant="outline" className="h-12 px-8 text-base bg-transparent text-white border-white/20 hover:bg-white/10 hover:text-white">
+              <Button variant="outline" className="h-12 px-2 lg:px-8 text-base bg-transparent text-white border-white/20 hover:bg-white/10 hover:text-white">
                 Login to Dashboard
               </Button>
             </Link>
