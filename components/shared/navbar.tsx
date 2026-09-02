@@ -37,8 +37,8 @@ export function Navbar() {
         
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          <Image src="/logo-light.png" alt="CreditExpo" width={120} height={32} className="h-8 w-auto dark:hidden" priority />
-          <Image src="/logo-dark.png" alt="CreditExpo" width={120} height={32} className="hidden h-8 w-auto dark:block" priority />
+          <Image src="/logo.png" alt="CreditExpo" width={120} height={32} className="h-8 w-auto dark:hidden" priority />
+          <Image src="/logo2.png" alt="CreditExpo" width={120} height={32} className="hidden h-8 w-auto dark:block" priority />
         </Link>
 
         {/* Desktop Nav */}
