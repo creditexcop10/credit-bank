@@ -1,26 +1,169 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Keep your @import and @theme inline blocks exactly as they are, just replace the :root and .dark blocks */
+
+:root {
+  --background: #f6f6f8; /* cloud-canvas */
+  --foreground: #12161e; /* obsidian */
+  --card: #ffffff; /* pure-white */
+  --card-foreground: #12161e;
+  --popover: #ffffff;
+  --popover-foreground: #12161e;
+  --primary: #111a4a; /* indigo-navy */
+  --primary-foreground: #ffffff;
+  --secondary: #e3e4e8; /* silver-lining */
+  --secondary-foreground: #111a4a;
+  --muted: #f6f6f8;
+  --muted-foreground: #7c7f88; /* steel */
+  --accent: #ec652b; /* signal-orange */
+  --accent-foreground: #ffffff;
+  --destructive: #e43f52;
+  --border: #e3e4e8;
+  --input: #cbcccf; /* mist */
+  --ring: #111a4a;
+  --chart-1: #111a4a;
+  --chart-2: #167e6c; /* seafoam-700 */
+  --chart-3: #ec652b;
+  --chart-4: #88deeb; /* sky-cyan */
+  --chart-5: #7c7f88;
+  --radius: 0.5rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #12161e;
+  --sidebar-primary: #111a4a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f6f6f8;
+  --sidebar-accent-foreground: #111a4a;
+  --sidebar-border: #e3e4e8;
+  --sidebar-ring: #111a4a;
+}
+
+.dark {
+  --background: #011821; /* midnight-ink */
+  --foreground: #f6f6f8;
+  --card: #12161e; /* obsidian */
+  --card-foreground: #f6f6f8;
+  --popover: #12161e;
+  --popover-foreground: #f6f6f8;
+  --primary: #ffffff; /* In dark mode, primary buttons often flip to white */
+  --primary-foreground: #111a4a;
+  --secondary: #232730; /* charcoal */
+  --secondary-foreground: #f6f6f8;
+  --muted: #232730;
+  --muted-foreground: #a9acb6; /* fog */
+  --accent: #ec652b;
+  --accent-foreground: #ffffff;
+  --destructive: #e43f52;
+  --border: #232730;
+  --input: #3b3e47; /* slate-ink */
+  --ring: #ec652b;
+  --chart-1: #88deeb;
+  --chart-2: #94efb7; /* seafoam-400 */
+  --chart-3: #ec652b;
+  --chart-4: #111a4a;
+  --chart-5: #a9acb6;
+  --sidebar: #011821;
+  --sidebar-foreground: #f6f6f8;
+  --sidebar-primary: #ec652b;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #12161e;
+  --sidebar-accent-foreground: #f6f6f8;
+  --sidebar-border: #232730;
+  --sidebar-ring: #ec652b;
+}
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom Banking Loader */
+.loader-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 160px;
+}
+
+.loader-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  aspect-ratio: 1;
+  display: grid;
+  animation: l14 4s infinite;
+}
+
+.loader-ring::before,
+.loader-ring::after {    
+  content: "";
+  grid-area: 1/1;
+  border: 6px solid;
+  border-radius: 50%;
+  border-color: #ec652b #ec652b transparent transparent; /* Signal Orange */
+  animation: l14 1s infinite linear;
+}
+
+.loader-ring::after {
+  border-color: transparent transparent #111a4a #111a4a; /* Indigo Navy */
+  animation-direction: reverse;
+}
+
+@keyframes l14 { 
+  100% { transform: rotate(1turn) }
 }
