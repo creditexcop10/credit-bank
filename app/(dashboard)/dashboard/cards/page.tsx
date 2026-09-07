@@ -32,7 +32,7 @@ export default function CardsPage() {
               <div className="relative z-10 flex justify-between items-start">
                 <div>
                   <p className="text-sm text-white/80 uppercase tracking-wider">{card.type}</p>
-                  <p className="text-xl font-bold mt-1">CreditExpo Bank</p>
+                  <p className="text-xl font-bold mt-1">CreditExcop Bank</p>
                 </div>
                 <CreditCard className="h-8 w-8 text-white/40" />
               </div>

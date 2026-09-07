@@ -17,7 +17,7 @@ export function Footer() {
           <div>
             <Image 
               src="/logo-dark.png" 
-              alt="CreditExpo" 
+              alt="CreditExcop" 
               width={120} 
               height={32} 
               className="h-8 w-auto mb-6" 
@@ -78,7 +78,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
           <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6">
-            <p className="text-blue-100/70 text-sm">© {new Date().getFullYear()} CreditExpo. All rights reserved.</p>
+            <p className="text-blue-100/70 text-sm">© {new Date().getFullYear()} CreditExcop. All rights reserved.</p>
             <div className="flex items-center space-x-4 text-xs text-blue-100/50">
               <span className="flex items-center gap-1.5"><ShieldCheck className="w-3 h-3 text-green-400" /> FDIC Insured</span>
               <span className="flex items-center gap-1.5"><Lock className="w-3 h-3 text-blue-400" /> 256-bit SSL</span>

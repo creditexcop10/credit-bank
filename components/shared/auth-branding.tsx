@@ -31,7 +31,7 @@ export function AuthBranding({ title, subtitle, description }: { title: string; 
         <motion.div variants={itemVariants} className="mb-6 relative">
           <div className="absolute inset-0 bg-white/20 rounded-2xl blur-lg"></div>
           <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
-            <Image src="/logo-dark.png" alt="CreditExpo" width={120} height={32} className="h-10 w-auto" priority />
+            <Image src="/logo-dark.png" alt="CreditExcop" width={120} height={32} className="h-10 w-auto" priority />
           </div>
         </motion.div>
         

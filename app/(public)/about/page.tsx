@@ -23,7 +23,7 @@ export default function AboutPage() {
           <div className="inline-flex items-center px-4 py-2 bg-white/10 text-white/90 rounded-full text-sm font-semibold mb-6 border border-white/20">
             Our Story
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">About CreditExpo</h1>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">About CreditExcop</h1>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto">Trusted banking partner committed to your financial success since our founding</p>
         </div>
       </section>
@@ -39,7 +39,7 @@ export default function AboutPage() {
           >
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">Our Mission</h2>
             <p className="text-lg text-muted-foreground mb-6">
-              At CreditExpo, we're dedicated to empowering individuals, families, and businesses to achieve their financial goals through innovative banking solutions, personalized service, and unwavering commitment to excellence.
+              At CreditExcop, we're dedicated to empowering individuals, families, and businesses to achieve their financial goals through innovative banking solutions, personalized service, and unwavering commitment to excellence.
             </p>
             <p className="text-lg text-muted-foreground">
               We believe that banking should be simple, secure, and accessible to everyone, which is why we continuously invest in technology and training to deliver the best possible experience for our customers.

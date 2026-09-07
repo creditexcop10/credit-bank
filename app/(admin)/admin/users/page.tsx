@@ -54,7 +54,7 @@ export default function AdminUsersPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-foreground">User Management</h1>
-          <p className="text-muted-foreground">View and manage all CreditExpo members.</p>
+          <p className="text-muted-foreground">View and manage all CreditExcop members.</p>
         </div>
       </div>
 

@@ -113,7 +113,7 @@ export function HeroSection() {
             <div className="relative h-80 w-full sm:h-96 lg:h-[28rem]">
               <Image
                 src="/metro.jpg"
-                alt="CreditExpo mobile app"
+                alt="CreditExcop mobile app"
                 fill
                 className="object-cover"
                 priority

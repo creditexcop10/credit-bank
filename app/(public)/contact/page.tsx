@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 
 const contactInfo = [
   { icon: Phone, title: "Phone", lines: ["1-800-BANKING", "Available 24/7"], color: "text-primary" },
-  { icon: Mail, title: "Email", lines: ["support@creditexpo.com", "Response within 24 hours"], color: "text-teal-500" },
+  { icon: Mail, title: "Email", lines: ["support@CreditExcop.com", "Response within 24 hours"], color: "text-teal-500" },
   { icon: MapPin, title: "Visit Us", lines: ["123 Banking Street", "New York, NY 10001"], color: "text-purple-500" },
   { icon: Clock, title: "Banking Hours", lines: ["Mon-Fri: 9AM-5PM", "Sat: 9AM-1PM"], color: "text-orange-500" },
 ];

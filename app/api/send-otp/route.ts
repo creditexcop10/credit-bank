@@ -38,13 +38,13 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         sender: { 
           email: process.env.BREVO_SENDER_EMAIL || "noreply@credexcop.com", 
-          name: "CreditExpo" 
+          name: "CreditExcop" 
         },
         to: [{ email }],
-        subject: "Your CreditExpo Verification Code",
+        subject: "Your CreditExcop Verification Code",
         htmlContent: `
           <div style="font-family: sans-serif; text-align: center; padding: 20px;">
-            <h2 style="color: #111a4a;">CreditExpo Verification</h2>
+            <h2 style="color: #111a4a;">CreditExcop Verification</h2>
             <p>Please use the following code to complete your registration:</p>
             <h1 style="font-size: 40px; letter-spacing: 5px; color: #111a4a;">${otpCode}</h1>
             <p>This code will expire in 10 minutes.</p>

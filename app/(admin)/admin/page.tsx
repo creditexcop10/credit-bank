@@ -24,7 +24,7 @@ export default function AdminDashboardPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Admin Dashboard</h1>
-          <p className="text-muted-foreground">Welcome back, here's what's happening at CreditExpo today.</p>
+          <p className="text-muted-foreground">Welcome back, here's what's happening at CreditExcop today.</p>
         </div>
         <Button className="bg-primary hover:bg-primary/90">Export Report</Button>
       </div>

@@ -101,15 +101,15 @@ export default function RegisterPage() {
       animate="visible"
     >
       <div className="lg:hidden text-center mb-6">
-        <Image src="/logo-light.png" alt="CreditExpo" width={120} height={32} className="h-10 w-auto mx-auto dark:hidden" priority />
-        <Image src="/logo-dark.png" alt="CreditExpo" width={120} height={32} className="hidden h-10 w-auto mx-auto dark:block" priority />
+        <Image src="/logo-light.png" alt="CreditExcop" width={120} height={32} className="h-10 w-auto mx-auto dark:hidden" priority />
+        <Image src="/logo-dark.png" alt="CreditExcop" width={120} height={32} className="hidden h-10 w-auto mx-auto dark:block" priority />
         <h1 className="text-xl font-bold text-foreground mt-4">Create Account</h1>
       </div>
 
       <div className="bg-card rounded-2xl shadow-xl border border-border overflow-hidden">
         <div className="px-6 py-5 border-b border-border">
           <h2 className="text-xl font-bold text-foreground">Open an Account</h2>
-          <p className="text-sm text-muted-foreground">Join CreditExpo today</p>
+          <p className="text-sm text-muted-foreground">Join CreditExcop today</p>
         </div>
         
         <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-4">

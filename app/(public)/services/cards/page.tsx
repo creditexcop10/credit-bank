@@ -11,7 +11,7 @@ export default function CardsPage() {
           <p className="text-muted-foreground">Details about Cashback, Travel Rewards, and Low-APR cards will go here.</p>
         </div>
       </div>
-      <CTASection title="Ready to Get Your Card?" subtitle="Apply for a CreditExpo card today and start earning rewards." primaryText="Apply Now" />
+      <CTASection title="Ready to Get Your Card?" subtitle="Apply for a CreditExcop card today and start earning rewards." primaryText="Apply Now" />
     </>
   );
 }

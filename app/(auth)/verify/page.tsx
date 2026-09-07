@@ -63,7 +63,7 @@ export default function VerifyPage() {
     } else {
       sessionStorage.removeItem("verification_email");
       sessionStorage.removeItem("verification_password");
-      toast.success("Account verified! Welcome to CreditExpo.");
+      toast.success("Account verified! Welcome to CreditExcop.");
       router.refresh();
       router.push("/dashboard");
     }
@@ -96,7 +96,7 @@ export default function VerifyPage() {
         <div className="flex justify-center mb-8">
           <Image 
             src="/logo2.png" 
-            alt="CreditExpo" 
+            alt="CreditExcop" 
             width={140} 
             height={40} 
             className="h-10 w-auto" 

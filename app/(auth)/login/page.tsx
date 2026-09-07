@@ -65,15 +65,15 @@ export default function LoginPage() {
       animate="visible"
     >
       <div className="lg:hidden text-center mb-6">
-        <Image src="/logo-light.png" alt="CreditExpo" width={120} height={32} className="h-10 w-auto mx-auto dark:hidden" priority />
-        <Image src="/logo-dark.png" alt="CreditExpo" width={120} height={32} className="hidden h-10 w-auto mx-auto dark:block" priority />
+        <Image src="/logo-light.png" alt="CreditExcop" width={120} height={32} className="h-10 w-auto mx-auto dark:hidden" priority />
+        <Image src="/logo-dark.png" alt="CreditExcop" width={120} height={32} className="hidden h-10 w-auto mx-auto dark:block" priority />
         <h1 className="text-xl font-bold text-foreground mt-4">Welcome Back</h1>
       </div>
 
       <div className="bg-card rounded-2xl shadow-xl border border-border overflow-hidden">
         <div className="px-6 py-5 border-b border-border">
           <h2 className="text-xl font-bold text-foreground">Sign In</h2>
-          <p className="text-sm text-muted-foreground">Access your CreditExpo account</p>
+          <p className="text-sm text-muted-foreground">Access your CreditExcop account</p>
         </div>
         
         <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-4">
@@ -104,7 +104,7 @@ export default function LoginPage() {
         </form>
 
         <div className="px-6 pb-6 text-center text-xs text-muted-foreground">
-          New to CreditExpo? <a href="/register" className="text-primary font-semibold hover:underline">Create New Account</a>
+          New to CreditExcop? <a href="/register" className="text-primary font-semibold hover:underline">Create New Account</a>
         </div>
       </div>
     </motion.div>

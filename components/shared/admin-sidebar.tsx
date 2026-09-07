@@ -46,7 +46,7 @@ export function AdminSidebar({ open, onClose }: { open: boolean; onClose: () => 
       <aside className={`fixed top-0 left-0 z-50 h-full w-64 bg-slate-900 text-white transform transition-transform duration-300 lg:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex items-center justify-between p-4 border-b border-white/10">
           <Link href="/admin" onClick={onClose} className="flex items-center gap-2">
-            <Image src="/logo2.png" alt="CreditExpo" width={100} height={28} className="h-7 w-auto" priority />
+            <Image src="/logo2.png" alt="CreditExcop" width={100} height={28} className="h-7 w-auto" priority />
             <span className="bg-accent text-white text-xs px-2 py-0.5 rounded-full font-bold">ADMIN</span>
           </Link>
           <button onClick={onClose} className="lg:hidden text-white/70 hover:text-white">

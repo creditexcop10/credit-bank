@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "sonner"; // <-- Import Toaster
 
 export const metadata: Metadata = {
-  title: "CreditExpo Bank",
+  title: "CreditExcop Bank",
   description: "Modern online banking reimagined.",
 };
 

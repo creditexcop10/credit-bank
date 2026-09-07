@@ -28,10 +28,10 @@ export default function TermsPage() {
                 <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:scroll-mt-24 prose-h2:text-foreground prose-p:text-muted-foreground prose-li:text-muted-foreground">
                   
                   <h2 id="acceptance">1. Acceptance of Terms</h2>
-                  <p>By accessing and using CreditExpo banking services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these terms, please do not use our services.</p>
+                  <p>By accessing and using CreditExcop banking services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these terms, please do not use our services.</p>
 
                   <h2 id="accounts">2. Account Opening and Maintenance</h2>
-                  <p>To open an account with CreditExpo, you must meet the following requirements:</p>
+                  <p>To open an account with CreditExcop, you must meet the following requirements:</p>
                   <ul>
                     <li>Be at least 18 years of age</li>
                     <li>Provide accurate and complete personal information</li>
@@ -43,7 +43,7 @@ export default function TermsPage() {
                   <p>You are responsible for maintaining the confidentiality of your account information, password, and PIN. You agree to notify us immediately of any unauthorized use of your account or any other security breach.</p>
 
                   <h2 id="fees">4. Services and Fees</h2>
-                  <p>CreditExpo provides various banking services including but not limited to:</p>
+                  <p>CreditExcop provides various banking services including but not limited to:</p>
                   <ul>
                     <li>Savings and checking accounts</li>
                     <li>Online and mobile banking</li>

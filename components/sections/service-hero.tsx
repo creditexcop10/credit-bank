@@ -16,7 +16,7 @@ export function ServiceHero({ title, subtitle }: { title: string; subtitle: stri
           transition={{ duration: 0.6 }}
         >
           <div className="inline-flex items-center px-4 py-2 bg-white/10 text-white/90 rounded-full text-sm font-semibold mb-6 border border-white/20">
-            CreditExpo Services
+            CreditExcop Services
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">{title}</h1>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">{subtitle}</p>

@@ -9,7 +9,7 @@ export default function Loading() {
         {/* Logo perfectly centered inside the ring */}
         <Image
           src="/icon.png"
-          alt="CreditExpo"
+          alt="CreditExcop"
           width={100}
           height={40}
           className="relative z-10 h-8 w-auto dark:hidden"
@@ -17,7 +17,7 @@ export default function Loading() {
         />
         <Image
           src="/icon.png"
-          alt="CreditExpo"
+          alt="CreditExcop"
           width={100}
           height={40}
           className="relative z-10 hidden h-8 w-auto dark:block"
