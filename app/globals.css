@@ -167,3 +167,13 @@
 @keyframes l14 { 
   100% { transform: rotate(1turn) }
 }
+
+/* === Google Translate Customization === */
+.goog-te-banner-frame.skiptranslate { display: none !important; }
+body { top: 0px !important; position: static !important; }
+.goog-logo-link, .goog-te-balloon-frame { display: none !important; }
+.goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+.goog-te-gadget .goog-te-combo { margin: 0 !important; }
+#google_translate_element { display: none !important; }
+.goog-tooltip { display: none !important; }
+.goog-tooltip:hover { display: none !important; }

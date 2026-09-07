@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+import { Toaster } from "sonner"; // <-- Import Toaster
 
 export const metadata: Metadata = {
   title: "CreditExpo Bank",
@@ -18,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn("min-h-full flex flex-col bg-background text-foreground antialiased font-sans", inter.variable)} suppressHydrationWarning>
+      <body className={cn("min-h-full flex flex-col bg-background text-foreground antialiased font-sans")} suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -26,6 +24,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Toaster richColors position="top-right" /> {/* <-- Add Toaster here */}
         </ThemeProvider>
       </body>
     </html>

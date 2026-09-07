@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion, type Variants } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import Image from "next/image";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -24,7 +24,6 @@ const cardVariants: Variants = {
 };
 
 export default function LoginPage() {
-  const router = useRouter();
   const supabase = createSupabaseBrowserClient();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -44,9 +43,17 @@ export default function LoginPage() {
       toast.error(error.message);
       setLoading(false);
     } else {
-      toast.success("Login successful!");
-      router.push("/dashboard");
-      router.refresh();
+      toast.success("Login successful! Redirecting...");
+      
+      // Fetch the user who just logged in to check their role
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      // Use redirect() for a hard navigation to trigger the middleware properly
+      if (user?.user_metadata?.role === "admin") {
+        redirect("/admin");
+      } else {
+        redirect("/dashboard");
+      }
     }
   };
 

@@ -43,7 +43,9 @@ export default function RegisterPage() {
 
   const onSubmit = async (values: z.infer<typeof registerSchema>) => {
     setLoading(true);
-    const { error } = await supabase.auth.signUp({
+    
+    // 1. Create the user in Supabase
+    const { data, error } = await supabase.auth.signUp({
       email: values.email,
       password: values.password,
       options: {
@@ -60,12 +62,37 @@ export default function RegisterPage() {
     if (error) {
       toast.error(error.message);
       setLoading(false);
-    } else {
-      toast.success("Account created! Please check your email to verify.");
-      router.push("/login");
+      return;
     }
-  };
 
+    // 2. Sign them out immediately so they must verify the OTP first
+    await supabase.auth.signOut();
+
+    // 3. Call our API route to generate and "send" the OTP
+    const res = await fetch("/api/send-otp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: values.email }),
+    });
+
+    // ADD THIS TO SEE WHAT'S HAPPENING:
+    console.log("API Response status:", res.status);
+    const resData = await res.json();
+    console.log("API Response data:", resData);
+
+    if (!res.ok) {
+      toast.error(resData.error || "Failed to send verification code. Please try again.");
+      setLoading(false);
+      return;
+    }
+
+    // 4. Store email and password temporarily to log them in after verification
+    sessionStorage.setItem("verification_email", values.email);
+    sessionStorage.setItem("verification_password", values.password);
+    
+    toast.success("Account created! Please enter the 6-digit code sent to your email.");
+    router.push("/verify");
+  };
   return (
     <motion.div 
       className="w-full max-w-xl"
