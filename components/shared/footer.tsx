@@ -16,7 +16,7 @@ export function Footer() {
           {/* Company Info */}
           <div>
             <Image 
-              src="/logo-dark.png" 
+              src="/logo2.png" 
               alt="CreditExcop" 
               width={120} 
               height={32} 

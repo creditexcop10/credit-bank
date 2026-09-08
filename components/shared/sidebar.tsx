@@ -45,7 +45,7 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
       <aside className={`fixed top-0 left-0 z-50 h-full w-64 bg-[#111a4a] text-white transform transition-transform duration-300 lg:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex items-center justify-between p-4 border-b border-white/10">
           <Link href="/dashboard" onClick={onClose}>
-            <Image src="/logo-dark.png" alt="CreditExcop" width={120} height={32} className="h-8 w-auto" priority />
+            <Image src="/logo2.png" alt="CreditExcop" width={120} height={32} className="h-8 w-auto" priority />
           </Link>
           <button onClick={onClose} className="lg:hidden text-white/70 hover:text-white">
             <X className="h-5 w-5" />

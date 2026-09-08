@@ -101,8 +101,8 @@ export default function RegisterPage() {
       animate="visible"
     >
       <div className="lg:hidden text-center mb-6">
-        <Image src="/logo-light.png" alt="CreditExcop" width={120} height={32} className="h-10 w-auto mx-auto dark:hidden" priority />
-        <Image src="/logo-dark.png" alt="CreditExcop" width={120} height={32} className="hidden h-10 w-auto mx-auto dark:block" priority />
+        <Image src="/logo.png" alt="CreditExcop" width={120} height={32} className="h-10 w-auto mx-auto dark:hidden" priority />
+        <Image src="/logo2.png" alt="CreditExcop" width={120} height={32} className="hidden h-10 w-auto mx-auto dark:block" priority />
         <h1 className="text-xl font-bold text-foreground mt-4">Create Account</h1>
       </div>
 

@@ -1,23 +1,68 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 export default function SettingsPage() {
-  const [loading, setLoading] = useState(false);
+  const supabase = createSupabaseBrowserClient();
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
 
-  const handleSave = (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      // Fetch from profiles table
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("first_name, last_name, email, phone")
+        .eq("id", user.id)
+        .single();
+
+      if (profile) {
+        setFirstName(profile.first_name || "");
+        setLastName(profile.last_name || "");
+        setEmail(profile.email || user.email || "");
+        setPhone(profile.phone || "");
+      }
       setLoading(false);
+    };
+    fetchProfile();
+  }, [supabase]);
+
+  const handleSave = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+
+    const res = await fetch("/api/profile", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ firstName, lastName, phone }),
+    });
+
+    if (!res.ok) {
+      toast.error("Failed to update profile.");
+    } else {
       toast.success("Profile updated successfully!");
-    }, 1000);
+    }
+    setSaving(false);
   };
+
+  if (loading) {
+    return <div className="flex justify-center items-center h-64"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>;
+  }
 
   return (
     <div className="space-y-8">
@@ -38,24 +83,24 @@ export default function SettingsPage() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="firstName">First Name</Label>
-                    <Input id="firstName" defaultValue="John" />
+                    <Input id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="lastName">Last Name</Label>
-                    <Input id="lastName" defaultValue="Doe" />
+                    <Input id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email Address</Label>
-                  <Input id="email" type="email" defaultValue="john@example.com" disabled className="bg-muted/50" />
+                  <Input id="email" type="email" value={email} disabled className="bg-muted/50 cursor-not-allowed" />
                   <p className="text-xs text-muted-foreground">Email cannot be changed. Contact support if needed.</p>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone Number</Label>
-                  <Input id="phone" type="tel" defaultValue="+1 (555) 555-5555" />
+                  <Input id="phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} />
                 </div>
-                <Button type="submit" disabled={loading}>
-                  {loading ? "Saving..." : "Save Changes"}
+                <Button type="submit" disabled={saving} className="bg-primary hover:bg-primary/90">
+                  {saving ? <><Loader2 className="h-4 w-4 mr-2 animate-spin" /> Saving...</> : "Save Changes"}
                 </Button>
               </form>
             </CardContent>

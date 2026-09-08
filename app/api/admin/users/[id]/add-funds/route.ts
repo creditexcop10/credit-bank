@@ -30,6 +30,7 @@ export async function POST(
   }
 
   // 2. Increment the user's balance securely
+  // ... existing code ...
   const { error: rpcError } = await supabase.rpc("increment_balance", {
     user_uuid: id,
     amount_to_add: amount,
@@ -38,6 +39,13 @@ export async function POST(
   if (rpcError) {
     return NextResponse.json({ error: rpcError.message }, { status: 500 });
   }
+
+  // 3. Insert a notification for the user
+  await supabase.from("notifications").insert({
+    user_id: id,
+    title: "Deposit Approved",
+    description: `Your deposit of $${amount} has been approved and added to your balance.`
+  });
 
   return NextResponse.json({ success: true });
 }

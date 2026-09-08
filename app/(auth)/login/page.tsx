@@ -9,6 +9,7 @@ import Image from "next/image";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
@@ -24,6 +25,7 @@ const cardVariants: Variants = {
 };
 
 export default function LoginPage() {
+  const router = useRouter()
   const supabase = createSupabaseBrowserClient();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -50,10 +52,11 @@ export default function LoginPage() {
       
       // Use redirect() for a hard navigation to trigger the middleware properly
       if (user?.user_metadata?.role === "admin") {
-        redirect("/admin");
+        router.push("/admin");
       } else {
-        redirect("/dashboard");
+        router.push("/dashboard");
       }
+      router.refresh();
     }
   };
 
@@ -65,8 +68,8 @@ export default function LoginPage() {
       animate="visible"
     >
       <div className="lg:hidden text-center mb-6">
-        <Image src="/logo-light.png" alt="CreditExcop" width={120} height={32} className="h-10 w-auto mx-auto dark:hidden" priority />
-        <Image src="/logo-dark.png" alt="CreditExcop" width={120} height={32} className="hidden h-10 w-auto mx-auto dark:block" priority />
+        <Image src="/logo.png" alt="CreditExcop" width={120} height={32} className="h-10 w-auto mx-auto dark:hidden" priority />
+        <Image src="/logo2.png" alt="CreditExcop" width={120} height={32} className="hidden h-10 w-auto mx-auto dark:block" priority />
         <h1 className="text-xl font-bold text-foreground mt-4">Welcome Back</h1>
       </div>
 

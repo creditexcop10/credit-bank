@@ -11,7 +11,9 @@ import {
   Settings, 
   LogOut, 
   X,
-  ShieldCheck
+  ShieldCheck,
+  Clock,
+  Megaphone
 } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
@@ -21,6 +23,8 @@ import { toast } from "sonner";
 const navLinks = [
   { name: "Admin Dashboard", href: "/admin", icon: LayoutDashboard },
   { name: "User Management", href: "/admin/users", icon: Users },
+  { name: "Pending Deposits", href: "/admin/deposits", icon: Clock },
+  { name: "Broadcast", href: "/admin/broadcast", icon: Megaphone },
   { name: "Transactions", href: "/admin/transactions", icon: ArrowLeftRight },
   { name: "Card Approvals", href: "/admin/cards", icon: CreditCard },
   { name: "Admin Settings", href: "/admin/settings", icon: Settings },
