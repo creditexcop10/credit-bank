@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { CreditCard, Snowflake, Eye, EyeOff, Loader2, CheckCircle, Wifi } from "lucide-react";
+import { CreditCard, Snowflake, Eye, EyeOff, Loader2, CheckCircle, Wifi, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
@@ -133,7 +133,18 @@ export default function CardsPage() {
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-10">
             <CreditCard className="h-12 w-12 text-muted-foreground mb-4" />
-            <p className="text-muted-foreground">No cards found. Your virtual card is generated automatically upon registration.</p>
+            <p className="text-muted-foreground mb-4">You don't have an active card yet.</p>
+            <Button 
+              className="bg-primary hover:bg-primary/90"
+              onClick={async () => {
+                // Insert a card request
+                await fetch("/api/cards/request", { method: "POST" }); // We'll create this API route next
+                toast.success("Card requested! Pending admin approval.");
+                window.location.reload();
+              }}
+            >
+              <Plus className="h-4 w-4 mr-2" /> Request Virtual Card
+            </Button>
           </CardContent>
         </Card>
       )}

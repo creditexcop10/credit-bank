@@ -81,7 +81,6 @@ export default function TransfersPage() {
       setLoading(false);
       resetModal();
     } else {
-      // Move to success step
       setStep(3);
       setLoading(false);
     }
@@ -92,7 +91,7 @@ export default function TransfersPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Transfers</h1>
-          <p className="text-muted-foreground">Send money securely to any CreditExcop member.</p>
+          <p className="text-muted-foreground">Send money securely to any CreditExpo member.</p>
         </div>
         <Button className="bg-primary hover:bg-primary/90" onClick={() => setIsModalOpen(true)}>
           Initiate Transfer <ArrowRight className="h-4 w-4 ml-2" />
@@ -107,7 +106,7 @@ export default function TransfersPage() {
             </CardHeader>
             <CardContent className="flex flex-col items-center justify-center h-64 text-center">
               <ShieldCheck className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold text-foreground">Secure Transfers</h3>
+              <h3 className="text-xl font-semibold text-foreground">Secure Internal Transfers</h3>
               <p className="text-muted-foreground mt-2 max-w-sm">
                 All transfers are protected by your 4-digit Transaction PIN. Verify the recipient's name before sending.
               </p>
@@ -132,7 +131,7 @@ export default function TransfersPage() {
                 <p className="text-sm">Monthly Limit</p>
                 <p className="text-2xl font-bold text-white">$50,000.00</p>
               </div>
-              <p className="text-xs mt-4 text-blue-100/80">Transfers between CreditExcop accounts are instant.</p>
+              <p className="text-xs mt-4 text-blue-100/80">Transfers between CreditExpo accounts are instant and free.</p>
             </CardContent>
           </Card>
         </motion.div>
@@ -157,7 +156,7 @@ export default function TransfersPage() {
                 <div className="relative">
                   <Input 
                     id="toAccount" 
-                    placeholder="10-digit account number" 
+                    placeholder="10-digit CreditExpo account number" 
                     value={receiverAccount}
                     onChange={(e) => handleAccountLookup(e.target.value.replace(/\D/g, ""))}
                     maxLength={10}

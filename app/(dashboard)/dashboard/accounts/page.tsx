@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Wallet, ArrowUpRight, ArrowDownLeft, Eye, EyeOff, Plus, Loader2, Copy, CheckCircle } from "lucide-react";
+import { Wallet, ArrowUpRight, ArrowDownLeft, Eye, EyeOff, Plus, Loader2, Copy, Bitcoin, Coins } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,8 +13,8 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
   DialogFooter,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 
 type Profile = {
@@ -42,6 +42,7 @@ export default function AccountsPage() {
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [depositStep, setDepositStep] = useState(1);
+  const [paymentMethod, setPaymentMethod] = useState("bank");
   const [amount, setAmount] = useState("");
   const [desc, setDesc] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -71,7 +72,7 @@ export default function AccountsPage() {
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    toast.success("Copied to clipboard!");
+    toast.success("Address copied to clipboard!");
   };
 
   const handleDepositRequest = async (e: React.FormEvent) => {
@@ -81,7 +82,10 @@ export default function AccountsPage() {
     const res = await fetch("/api/deposit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount: parseFloat(amount), description: `Ref: ${desc}` }),
+      body: JSON.stringify({ 
+        amount: parseFloat(amount), 
+        description: `${paymentMethod.toUpperCase()} Deposit - ${desc}` 
+      }),
     });
 
     if (!res.ok) {
@@ -91,6 +95,7 @@ export default function AccountsPage() {
       toast.success("Deposit submitted! Pending admin approval.");
       setIsModalOpen(false);
       setDepositStep(1);
+      setPaymentMethod("bank");
       setAmount("");
       setDesc("");
       setSubmitting(false);
@@ -132,30 +137,75 @@ export default function AccountsPage() {
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>{depositStep === 1 ? "Fund Your Account" : "Confirm Your Transfer"}</DialogTitle>
+              <DialogTitle>{depositStep === 1 ? "Select Payment Method" : "Confirm Your Transfer"}</DialogTitle>
             </DialogHeader>
 
             {depositStep === 1 && (
               <div className="space-y-4 py-4">
-                <p className="text-sm text-muted-foreground">To fund your CreditExcop account, send a transfer to the bank details below using your external bank (e.g., Chase, Bank of America).</p>
+                <p className="text-sm text-muted-foreground">Choose how you want to fund your account.</p>
                 
-                <div className="bg-muted/50 rounded-xl p-4 space-y-3">
-                  <div className="flex justify-between items-center">
-                    <div><p className="text-xs text-muted-foreground">Bank Name</p><p className="font-medium">CreditExcop Reserve Bank</p></div>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <div><p className="text-xs text-muted-foreground">Account Name</p><p className="font-medium">CreditExcop Holdings LLC</p></div>
-                    <Button size="sm" variant="ghost" onClick={() => copyToClipboard("CreditExcop Holdings LLC")}><Copy className="h-3 w-3" /></Button>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <div><p className="text-xs text-muted-foreground">Account Number</p><p className="font-mono font-medium">9876543210</p></div>
-                    <Button size="sm" variant="ghost" onClick={() => copyToClipboard("9876543210")}><Copy className="h-3 w-3" /></Button>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <div><p className="text-xs text-muted-foreground">Routing Number</p><p className="font-mono font-medium">021000021</p></div>
-                    <Button size="sm" variant="ghost" onClick={() => copyToClipboard("021000021")}><Copy className="h-3 w-3" /></Button>
-                  </div>
+                <div className="grid grid-cols-3 gap-3">
+                  {/* Bank Option */}
+                  {/* <button 
+                    onClick={() => setPaymentMethod("bank")}
+                    className={`p-4 rounded-xl border-2 flex flex-col items-center gap-2 transition-colors ${paymentMethod === "bank" ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground"}`}
+                  >
+                    <Wallet className="h-6 w-6" />
+                    <span className="text-xs font-medium">Bank</span>
+                  </button> */}
+                  
+                  {/* Bitcoin Option */}
+                  <button 
+                    onClick={() => setPaymentMethod("btc")}
+                    className={`p-4 rounded-xl border-2 flex flex-col items-center gap-2 transition-colors ${paymentMethod === "btc" ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground"}`}
+                  >
+                    <Bitcoin className="h-6 w-6" />
+                    <span className="text-xs font-medium">Bitcoin</span>
+                  </button>
+
+                  {/* ERC-20 Option */}
+                  <button 
+                    onClick={() => setPaymentMethod("erc20")}
+                    className={`p-4 rounded-xl border-2 flex flex-col items-center gap-2 transition-colors ${paymentMethod === "erc20" ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground"}`}
+                  >
+                    <Coins className="h-6 w-6" />
+                    <span className="text-xs font-medium">ERC-20</span>
+                  </button>
                 </div>
+
+                {/* Conditional Wallet Details */}
+                {/* {paymentMethod === "bank" && (
+                  <div className="bg-muted/50 rounded-xl p-4 space-y-3 text-sm">
+                    <div className="flex justify-between items-center">
+                      <div><p className="text-xs text-muted-foreground">Account Name</p><p className="font-medium">CreditExpo Holdings LLC</p></div>
+                      <Button size="sm" variant="ghost" onClick={() => copyToClipboard("CreditExpo Holdings LLC")}><Copy className="h-3 w-3" /></Button>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div><p className="text-xs text-muted-foreground">Account Number</p><p className="font-mono font-medium">9876543210</p></div>
+                      <Button size="sm" variant="ghost" onClick={() => copyToClipboard("9876543210")}><Copy className="h-3 w-3" /></Button>
+                    </div>
+                  </div>
+                )} */}
+
+                {paymentMethod === "btc" && (
+                  <div className="bg-muted/50 rounded-xl p-4 space-y-3 text-sm">
+                    <p className="text-xs text-muted-foreground">Send Bitcoin (BTC) to the following address: </p>
+                    <div className="flex justify-between items-center">
+                      <div><p className="text-xs text-muted-foreground">BTC Address</p><p className="font-mono font-medium text-xs break-all">bc1q7w56j35gqvqa8pe7js4fp3z3xcat8ewexrmujs</p></div>
+                      <Button size="sm" variant="ghost" onClick={() => copyToClipboard("bc1q7w56j35gqvqa8pe7js4fp3z3xcat8ewexrmujs")}><Copy className="h-3 w-3" /></Button>
+                    </div>
+                  </div>
+                )}
+
+                {paymentMethod === "erc20" && (
+                  <div className="bg-muted/50 rounded-xl p-4 space-y-3 text-sm">
+                    <p className="text-xs text-muted-foreground">Send USDT, USDC, or Ethereum to the following ERC-20 address:</p>
+                    <div className="flex justify-between items-center">
+                      <div><p className="text-xs text-muted-foreground">ERC-20 Address</p><p className="font-mono font-medium text-xs break-all">0xbd8D9284c436Aa3f175A92b5Ff6C57E1cfd1D080</p></div>
+                      <Button size="sm" variant="ghost" onClick={() => copyToClipboard("0xbd8D9284c436Aa3f175A92b5Ff6C57E1cfd1D080")}><Copy className="h-3 w-3" /></Button>
+                    </div>
+                  </div>
+                )}
 
                 <DialogFooter>
                   <Button className="w-full bg-primary hover:bg-primary/90" onClick={() => setDepositStep(2)}>
@@ -168,16 +218,16 @@ export default function AccountsPage() {
             {depositStep === 2 && (
               <form onSubmit={handleDepositRequest} className="space-y-4 py-4">
                 <div className="space-y-2">
-                  <Label htmlFor="amount">Amount Transferred (USD)</Label>
+                  <Label htmlFor="amount">Amount Deposited (USD Value)</Label>
                   <div className="relative">
                     <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">$</span>
                     <Input id="amount" type="number" step="0.01" required value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="e.g. 500.00" className="pl-8" />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="desc">Transfer Reference / Receipt No.</Label>
-                  <Input id="desc" required value={desc} onChange={(e) => setDesc(e.target.value)} placeholder="e.g. TXN123456789" />
-                  <p className="text-xs text-muted-foreground">Found on your bank receipt. Helps the admin verify your deposit faster.</p>
+                  <Label htmlFor="desc">Transaction Hash / Receipt No.</Label>
+                  <Input id="desc" required value={desc} onChange={(e) => setDesc(e.target.value)} placeholder="e.g. 0x1234... or TXN123456789" />
+                  <p className="text-xs text-muted-foreground">Found on your crypto wallet or bank receipt. Helps the admin verify your deposit faster.</p>
                 </div>
                 <DialogFooter>
                   <Button type="button" variant="outline" onClick={() => setDepositStep(1)}>Back</Button>

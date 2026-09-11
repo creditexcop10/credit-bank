@@ -10,7 +10,9 @@ import {
   CreditCard, 
   Settings, 
   LogOut, 
-  X 
+  X, 
+  HeartHandshake,
+  HandCoins,
 } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
@@ -22,6 +24,8 @@ const navLinks = [
   { name: "Accounts", href: "/dashboard/accounts", icon: Wallet },
   { name: "Transfers", href: "/dashboard/transfers", icon: ArrowLeftRight },
   { name: "Cards", href: "/dashboard/cards", icon: CreditCard },
+  { name: "Loans & Credit", href: "/dashboard/loans", icon: HandCoins }, // Add this!
+  { name: "Grants & Aid", href: "/dashboard/grants", icon: HeartHandshake }, // Add this!
   { name: "Settings", href: "/dashboard/settings", icon: Settings },
 ];
 
