@@ -26,15 +26,20 @@ export async function GET() {
 
   // 3. Create PDF Document
   const doc = new PDFDocument({ margin: 50 });
-  const buffers: Buffer[] = [];
-  doc.on("data", (chunk) => buffers.push(Buffer.from(chunk)));
 
-  // We use a Promise to wait for the PDF to finish generating before returning it
-  const pdfPromise = new Promise<Buffer>((resolve) => {
-    doc.on("end", () => {
-      const pdfData = Buffer.concat(buffers);
-      resolve(pdfData);
-    });
+  // Convert Node.js stream to Web API ReadableStream to satisfy TypeScript
+  const stream = new ReadableStream({
+    start(controller) {
+      doc.on("data", (chunk: Buffer) => {
+        controller.enqueue(new Uint8Array(chunk));
+      });
+      doc.on("end", () => {
+        controller.close();
+      });
+      doc.on("error", (err) => {
+        controller.error(err);
+      });
+    }
   });
 
   // --- PDF Layout ---
@@ -89,10 +94,8 @@ export async function GET() {
   // End the document
   doc.end();
 
-  // 4. Wait for PDF to finish and return it
-  const pdfBuffer = await pdfPromise;
-
-  return new NextResponse(pdfBuffer, {
+  // 4. Return the Web API ReadableStream
+  return new Response(stream, {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": 'attachment; filename="CreditExpo_Statement.pdf"',
