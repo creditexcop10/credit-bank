@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { createClient } from "@supabase/supabase-js";
 
 export async function POST(req: Request) {
   try {
@@ -9,7 +9,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
 
-    const supabase = await createSupabaseServerClient();
+    // Use Service Role key to bypass RLS
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
 
     // 1. Generate a 6-digit code
     const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
@@ -38,13 +42,13 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         sender: { 
           email: process.env.BREVO_SENDER_EMAIL || "noreply@credexcop.com", 
-          name: "CreditExcop" 
+          name: "CreditExpo" 
         },
         to: [{ email }],
-        subject: "Your CreditExcop Verification Code",
+        subject: "Your CreditExpo Verification Code",
         htmlContent: `
           <div style="font-family: sans-serif; text-align: center; padding: 20px;">
-            <h2 style="color: #111a4a;">CreditExcop Verification</h2>
+            <h2 style="color: #111a4a;">CreditExpo Verification</h2>
             <p>Please use the following code to complete your registration:</p>
             <h1 style="font-size: 40px; letter-spacing: 5px; color: #111a4a;">${otpCode}</h1>
             <p>This code will expire in 10 minutes.</p>

@@ -99,6 +99,12 @@ export default function LoginPage() {
               </button>
             </div>
             {errors.password && <p className="text-xs text-destructive mt-1">{errors.password.message}</p>}
+            {/* Add this right below the password input errors */}
+            <div className="text-right">
+              <a href="/forgot-password" className="text-xs text-primary hover:underline">
+                Forgot Password?
+              </a>
+            </div>
           </div>
 
           <Button type="submit" disabled={loading} className="w-full bg-primary hover:bg-primary/90">

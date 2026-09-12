@@ -147,7 +147,7 @@ export default function VerifyPage() {
             <button 
               onClick={handleResend} 
               disabled={resending}
-              className="font-semibold text-primary hover:underline disabled:opacity-50"
+              className="font-semibold text-white hover:underline disabled:opacity-50"
             >
               {resending ? "Sending..." : "Resend Code"}
             </button>

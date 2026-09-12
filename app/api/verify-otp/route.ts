@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { createClient } from "@supabase/supabase-js";
 
 export async function POST(req: Request) {
   try {
@@ -9,7 +9,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Missing email or code" }, { status: 400 });
     }
 
-    const supabase = await createSupabaseServerClient();
+    // Use Service Role Key to bypass RLS
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
+    
     const normalizedEmail = email.toLowerCase();
 
     // 1. Fetch the code from the database
@@ -20,7 +25,6 @@ export async function POST(req: Request) {
       .single();
 
     if (error || !data) {
-      console.error("DB Fetch Error:", error);
       return NextResponse.json({ error: "No code found. Please register again." }, { status: 400 });
     }
 
